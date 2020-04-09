@@ -45,8 +45,8 @@ def bloques(A, b=False, n1=False, n2=False):
 
 
 # Datos aleatoreros puebra
-A = np.random.rand(10000,10000)
-b = np.random.rand(10000)
+A = np.random.rand(100,100)
+b = np.random.rand(100)
 
 # codigo para verificar bloques
 #A11,A12,A21,A22,b1,b2 = bloques(A,b)
