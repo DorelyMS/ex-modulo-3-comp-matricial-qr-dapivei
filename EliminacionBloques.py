@@ -30,17 +30,18 @@ def bloques(A, n1=False, n2=False):
 	return A11,A12,A21,A22
 
 
-A = np.random.normal(20,size=(5,4))
+#A = np.random.normal(10*10,size=(10,10))
+A = np.array([[1,1],[2,2]])
 
 A11,A12,A21,A22 = bloques(A)
 
-print(A)
-print("--------------")
 print(A11)
-print("--------------")
-print(A12)
-print("--------------")
-print(A21)
-print("--------------")
-print(A22)
 
+def eliminacion_bloques(A,b):
+
+	if np.linalg.det(A)==0:
+		sys.exit('A debe ser no singular')
+	else:
+		None
+
+eliminacion_bloques(A,0)
