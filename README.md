@@ -45,4 +45,5 @@ Otras referencias útiles:
 ## % de la calificación final: 20 puntos
 
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gzarazua/repo_publico_mno/rama2?urlpath=lab) 
 
