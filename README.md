@@ -1,7 +1,7 @@
 
 # Examen de cómputo matricial equipo QR
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/FAC_QR_BLOC.ipynb)
 
 El equipo creado por el prof se subdivide en tres grupos: grupo de programación, grupo de revisión y una persona project manager. Esta división está inspirada en el *framework* [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en un ambiente laboral real (y en esta práctica estaremos simplificando tal *framework*).  
 
