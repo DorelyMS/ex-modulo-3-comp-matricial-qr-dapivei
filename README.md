@@ -42,14 +42,6 @@ Cada cierto tiempo, el equipo sostuvo reuniones para: verificar el avance de los
 
 <center>
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-.tg .tg-yl90{color:#326c9d;border-color:#326c9d;text-align:center;vertical-align:middle}
-.tg .tg-a0p1{font-weight:bold;color:#326c9d;border-color:#326c9d;text-align:center;vertical-align:top}
-.tg .tg-cwfa{color:#326c9d;border-color:#326c9d;text-align:left;vertical-align:top}
-</style>
 <table class="tg" style="undefined;table-layout: fixed; width: 965px">
 <colgroup>
 <col style="width: 128.16666700000002px">
@@ -77,6 +69,8 @@ Cada cierto tiempo, el equipo sostuvo reuniones para: verificar el avance de los
     <td class="tg-cwfa"></td>
   </tr>
 </table>
+
+</center>
 
 #### Issues
 
