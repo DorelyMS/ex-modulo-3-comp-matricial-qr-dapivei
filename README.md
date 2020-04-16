@@ -28,7 +28,7 @@
 - [X] [Pruebas](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas): Contiene las diferentes pruebas que se realizaron a las funciones propuestas apra verificar que los algoritmos sean precisos y marquen error cuando los datos de entrada no cumplan los requisitos determinados por el algoritmo que se está implementando.
 
 
-- [X] [Images](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Imágenes que se fueron insertando en este documento o en el [reporteFinal.iypnb]()
+- [X] [Images](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Imágenes que se fueron insertando en este documento o en el [reporteFinal.iypnb](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb).
 
 
 - [X] [Referencias](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Referencias): Bibliografía o páginas consultadas para la elaboración de este proyecto.
@@ -120,6 +120,7 @@ Para dar orden durante el levantamiento de los *issues*, se definió que la proj
 Para consultar los issues que se fueron creando a lo largo del proyecto, además poder visulizarlos en el [Project Board](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/projects/1), pueden ser consultados aquí:
 
 > [*Open Issues*](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/issues?q=is%3Aopen+is%3Aissue)
+
 > [*Closed Issues*](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/issues?q=is%3Aissue+is%3Aclosed)
 ## Estatus final
 
