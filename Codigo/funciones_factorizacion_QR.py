@@ -10,7 +10,7 @@ import codecs
 
 def busca_ayuda(cadena):
     """
-    Función que devuelve el texto de ayuda correspondiente a la funcion
+    Función que devuelve el texto de ayuda correspondiente a la función
     que se pase como parámetro, obtenida de un unico archivo .txt
     donde están documentadas las "ayudas" de todas las funciones asociadas
     a la factorización QR (contenidas en este .py)
@@ -197,8 +197,7 @@ def Q_j(A_r_v,j):
     obteniendo n Qj's, que si se multiplican todas da por resultado Q=Q_1*Q_2*...*Q_n)
                             
     params: A_r_v   Matriz (mxn) con la info escencial
-            C       Matriz (mxp) (si se pasa por ejemplo C=Identidad (mxm) la funcion 
-                    devolverá Q)
+            j       indica el índice de la matriz Q_j
 
     return: Qj      Matriz Q de la j-esima iteración del proceso iterativo de factorización QR
     """
