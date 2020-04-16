@@ -33,3 +33,7 @@
  - Laura Gómez Bustamente, [lauragmz](https://github.com/lauragmz). Revisora.
  - Guillermo Zarazua Cruz, [gzarazua](https://github.com/gzarazua). Programador.
  - Daniela Pinto Veizaga, [dapivei](https://github.com/dapivei). Project Manager.
+
+
+BOTÓN JUPYTERLAB_NUMERICAL_BINDER
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gzarazua/repo_publico_mno/rama2?urlpath=lab)
