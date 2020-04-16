@@ -1,0 +1,211 @@
+****i****crear_matriz_aleatoria
+
+Descripción:
+        Función que genera matrices de tamaño definido con entradas dentro del rango
+	indicado
+
+Parametros:
+	renglones       integer indica renglones de la matriz
+        columnas        integer indica columnas de la matriz
+        maximo_valor    integer o double señala valor máximo de las entradas de la matriz
+        minimo_valor    integer o double señala valor mínimo de las entradas de la matriz
+        entero          Boolean, indica si las entradas serán enteras (True) o no (False)
+
+Resultado:
+        M               np.ndarray que representa matriz (mxn) con numeros al azar en el
+			rango indicado
+
+Ejemplos:
+Crear matriz de m=4 renglones y n=3 columnas, con entradas reales entre 3.4 y 15.6:
+crea_matriz(m,n,3.4,15.6)
+
+Crear matriz de m=2 renglones y n=2 columnas, con entradas enteras entre 0 y 1:
+crea_matriz(2,2,0,1,True)
+
+****f****crear_matriz_aleatoria
+
+
+
+
+
+
+****i****house
+
+Descripción:
+        Función que calcula vector de householder
+
+Parametros:
+        x       np.ndarray que representa vector al que se le hará la reflexión householder
+
+Resultado:
+        Beta    double para obtener matriz de reflexión householder v
+        v       np.ndarray que representa vector que representa la reflexión de householder
+
+Con el vector v y el factor beta obtenidos se puede calcular la matriz de reflexión de
+householder R, donde R= Identidad(mxm) - Beta*v*v_transpuesta (v*v_transpuesta es matriz  
+de pxp si v tiene p entradas). El vector v está construido de tal forma que al generar la 
+matriz de reflexión de householder Rf y multiplicarse por x se obtiene una proyección de 
+este último sobre el vector canónico e_1=(1,0,0,...,0) obteniendo un vector con todas sus 
+entradas ingualas  a cero excepto la primera, que de hecho es ||x||*e_1=(||x||,0,0,...,0)
+
+Esta mecánica se puede implementar en matrices para generar matrices triangulares superiores 
+(generando ceros en el triangulo inferior) como se ilustra a continuación
+
+   [ a00 a01 a02 a03 ]
+A= [ a10 a11 a12 a13 ]
+   [ a20 a21 a22 a23 ]
+   [ a30 a31 a32 a33 ]
+
+Tomese x=A[:,0]=[a00,a10,a20,a30], calcular (v,Beta) y con ello la matriz de reflexión Rf_0. 
+Con el producto Rf_0*A se obtiene una matriz de la forma:
+   [  *   *   *   *  ]
+A= [  0   *   *   *  ]
+   [  0   *   *   *  ]
+   [  0   *   *   *  ]
+
+Tomese x=A[:,1]=[a11,a21,a31], calcular (v,Beta) y con ello la matriz de reflexión Rf_1. 
+Con el producto Rf_1*Rf_0*A se obtiene una matriz de la forma:
+   [  *   *   *   *  ]
+A= [  0   *   *   *  ]
+   [  0   0   *   *  ]
+   [  0   0   *   *  ]
+
+****f****house
+
+
+
+
+
+
+****i****matriz_auxiliar_Arv
+
+Descripción:
+        Función que genera una matriz que contiene los elementos r distintos de cero de 
+        la matriz R y las entradas de los vectores householder v (excepto la primera), 
+        con los cuales se puede calcular la matriz Q. Ambas matrices componentes de la 
+	factorización QR
+
+Parametros:
+        A      numpy.ndarray que representa matriz (mxn) de la que se desea obtener 
+               elemento de factorización QR
+
+Resultado:
+        Arv    numpy.ndarray que representa matriz (mxn) que incluye las componentes 
+               distintas de cero de la matriz R y los vectores householder con los 
+               que se puede obtener la matriz Q, y con ello la factorización QR
+
+La factorización QR consiste en encontrar 2 matrices tales que A=Q*R 
+donde Q es una matriz ortogonal y R es una matriz triangular superior 
+Las entradas de la matriz Arv que arroja esta función se pueden visualizar como:
+     [ r00  r01  r02  r03 ]
+     [ v10  r11  r12  r13 ]
+Arv= [ v20  v21  r22  r23 ]
+     [ v30  v31  v32  r33 ]
+     [ v40  v41  v42  v43 ]
+
+Las entradas r conforman la matriz R (triangular superior): 
+     [ r00  r01  r02  r03 ] 
+     [  0   r11  r12  r13 ] 
+R=   [  0    0   r22  r23 ] 
+     [  0    0    0   r33 ] 
+     [  0    0    0    0  ]
+
+La matriz Q puede obtenerse a partir de los vectores householder v, los cuales 
+sirven para construir la matriz de reflexión de householder R, con 
+R=Identidad(mxm) - Beta*v*v_trans  y  Beta=2/(v_trans*v) 
+                       [  1                 ]
+                       [ v10   1            ]
+vectores householder*= [ v20  v21   1       ]
+                       [ v30  v31  v32   1  ]
+                       [ v40  v41  v42  v43 ]
+
+*Notese que Avr no tiene la primera entrada de los vectores v, pero sabemos por 
+construcción que es igual a 1. Con el vector v_1=(1,v10,v20,v30,v40) se puede
+calcular Q_1, con v_2=(1,v21,v31,v41) se puede calcular Q_2, con v_3=(1,v32,v42)
+se puede calcular Q_3 y con v_4=(1,v43) se puede calcular Q_4.
+
+****f****matriz_auxiliar_Arv
+
+
+
+
+
+
+
+****i****matriz_R
+
+Descripción:
+        Función que devuelve la matriz R de la factorización QR de una matriz A,
+        apartir de la matriz Arv
+
+Parametros:
+        A_r_v   np.ndarray que representa matriz (mxn) que incluye elementos de 
+                la matriz R y Q, de la factorización QR
+
+Resultado:
+        R       np.ndarray que representa matriz (mxn) R de la factorización A=QR
+
+Visualmente la sustracción de los elementos de R se ve así:
+     [ r11  r12  r13  r14 ]            [ r11  r12  r13  r14 ]
+     [ v21  r22  r23  r24 ]            [  0   r22  r23  r24 ]
+Arv= [ v31  v32  r33  r34 ]   -->   R= [  0    0   r33  r34 ]
+     [ v41  v42  v43  r44 ]            [  0    0    0   r44 ]
+     [ v51  v52  v53  v54 ]            [  0    0    0    0  ]
+
+****f****matriz_R
+
+
+
+
+
+
+****i****matriz_Q
+
+Descripción:
+        Función que devuelve la matriz R de la factorización QR de una matriz A,
+        apartir de la matriz Arv
+
+Parametros:
+        A_r_v   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
+                elementos de la matriz R y Q, de la factorización QR
+
+Resultado:
+        R       np.ndarray que representa matriz Q (mxm) de la factorización A=QR
+
+La matriz Q (matriz ortogonal tal que Q_transpuesta*Q es igual a la identidad (mxm)
+se calcula como el producto de las matrices Q_j's, las cuales se obtienen a partir
+de las diferentes matrices de reflexión householder utilizadas para generar los ceros
+en las columnas de A para formar la matriz R
+
+Q = Q_1*Q_2*Q_3*Q_4
+
+Nota: Cada matriz Q_j se calcula con el vector v_j, correspondiente al j-ésimo 
+vector de householder como: Q_j = Identidad(mxm) - Beta*v_j*v_j_transpuesta
+Dichos vectores v están contenidos dentro de la matriz auxiliar Arv
+
+****f****matriz_Q
+
+
+
+
+
+
+****i****Q_j
+
+Descripción:
+	Función que calcula la matriz Qj (en el proceso de obtención de 
+	factorización QR se van obteniendo n Qj's, que si se multiplican todas 
+	da por resultado Q=Q_1*Q_2*...*Q_n)
+
+Parámetros:                            
+	A_r_v   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
+                elementos de la matriz R y Q, de la factorización QR
+	j       integer que indica el índice de la matriz Q_j
+
+Resultado:
+	Qj      np.ndarray que representa la j-esima transformación de householder
+
+La matriz Q_j se calcula con el vector v_j, correspondiente al j-ésimo vector 
+de householder como: Q_j = Identidad(mxm) - Beta*v_j*v_j_transpuesta
+
+****f****Q_j
