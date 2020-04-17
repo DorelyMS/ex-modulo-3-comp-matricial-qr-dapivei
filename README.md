@@ -41,7 +41,7 @@
 
 #### Metodología
 
-El equipo que elaboró el presente proyecto se estructuró conforme con la el *framework scrum*: un grupo de programación, un grupo de revisión y project manager.
+El equipo que elaboró el presente proyecto se estructuró conforme con el *framework scrum*: un grupo de programación, un grupo de revisión y project manager.
 
 #### Milestones
 
