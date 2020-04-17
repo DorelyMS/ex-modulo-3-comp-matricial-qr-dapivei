@@ -221,7 +221,7 @@ Q_j.__doc__ =busca_ayuda("Q_j")
 
 
 
-def bloques(A, b=False, n1=False, n2=False):
+def crear_bloques(A, b=True, m1=True, n1=True):
     """
     Esta es la función para la creación de bloques usando un arreglo de numpy
     
@@ -243,37 +243,39 @@ def bloques(A, b=False, n1=False, n2=False):
 
     # Condiciones de A
     # Si no se dan los n deseados, se intentan hacer los bloques casi iguales
-    if  not (n1&n2):
-        n1 = n//2
-        n2 = n - n1
+    m1 = m//2 if m1 is True else m1
+    print(m1)
+    n1 = n//2 if n1 is True else n1
+    print(n1)
+
     # Los bloques deben cumplir la condicion de tamaño
-    elif n1+n1 != n:
-        sys.exit('n1 + n2 debe ser igual a n')
-    else:
-        None
+    if m1 > m:
+        sys.exit('m1 debe ser menor que m')
+    elif n1 > n:
+        sys.exit('n1 debe ser menor que n')
+
 
     # Condiciones de b
-    if  b is False:
+    if  b is True:
         b1 = None
         b2 = None
-        print('condicion1')
     elif len(b) == m:
-        b1 = b[:n1]
-        b2 = b[n1:m]
+        b1 = b[:m1]
+        b2 = b[m1:m]
     else:
         sys.exit('los renglones de A y b deben ser del mismo tamaño')
 
-    A11 = A[:n1,:n1]
-    A12 = A[:n1,n1:n]
-    A21 = A[n1:m,:n1]
-    A22 = A[n1:m,n1:n]
+    A11 = A[:m1,:n1]
+    A21 = A[m1:m,:n1]
+    A12 = A[:m1,n1:n]
+    A22 = A[m1:m,n1:n]
 
-    return A11,A12,A21,A22,b1,b2
-
-
+    return A11,A21,A12,A22,b1,b2
 
 
-def eliminacion_bloques(A,b):
+
+
+def eliminacion_bloques(A,b, m1=True, n1=True):
     """
     Función que obtiene la solución de un sistema de ecuaciones lineala (SEL) con n ecuaciones y n incognitas
             
@@ -286,7 +288,7 @@ def eliminacion_bloques(A,b):
     if np.linalg.det(A)==0:
         sys.exit('A debe ser no singular')
 
-    A11,A12,A21,A22,b1,b2 = bloques(A,b)
+    A11,A21,A12,A22,b1,b2 = crear_bloques(A,b,m1,n1)
 
     if np.linalg.det(A11)==0:
         sys.exit('A11 debe ser no singular')
