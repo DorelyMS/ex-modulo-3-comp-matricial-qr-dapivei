@@ -33,7 +33,8 @@
 
 - [X] [Referencias](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Referencias): Bibliografía o páginas consultadas para la elaboración de este proyecto.
 
-- [X] [Reporte final](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb): Documento dónde se presentan los resultados finales del proyecto. Incluye: Descripción teórica básica de los métodos implementados, explicación breve del algoritmo propuesto, especificación de funciones principales y funciones auxilarias, ejecución de varios ejemplos que se corrieron, tablas y gráficas que muestren el párametro de bloque (subdivisión de la matriz del sistema), tiempos de ejecución para todo el programa o subdividido por secciones, reporte de errores relativos y condición de matrices de los sistemas resueltos y los resultados de sus pruebas.
+- [X] [Reporte final](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb): Documento dónde se presentan los resultados finales del proyecto. Incluye: Descripción teórica básica de los métodos implementados, explicación breve del algoritmo propuesto, especificación de funciones principales y funciones auxilarias, ejecución de varios ejemplos que se corrieron, tablas y gráficas que muestren el párametro de bloque (subdivisión de la matriz del sistema), tiempos de ejecución para todo el programa o subdividido por secciones, reporte de errores relativos y condición de matrices de los sistemas resueltos y los resultados de sus pruebas. Revisar de forma interactiva aquí: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1hfoEBN0WVZqOKjxOPJt4vOzypP8hoL1-)
+
 
 ## Sobre el Desarrollo del Proyecto
 
