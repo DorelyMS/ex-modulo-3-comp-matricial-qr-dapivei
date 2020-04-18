@@ -252,3 +252,66 @@ mediante la factorización QR como a continuación se explica:
   su inversa, lo cual hubiera implicado cálculos adicionales
   
 ****f****Solucion_SEL_QR_nxn
+
+
+
+
+
+
+****i****crear_bloques
+
+Descripción:
+  Función que divide la matriz A(mxn) y el vector b(mx1) en cuatro submatrices y dos vectores respectivamente
+
+Parámetros:                            
+  A     Matriz (mxn) 
+  b     vector (mx1)
+  m1    Número de renglones del los bloques superiores
+  n1    Número de columnas de los bloques de la izquierda
+
+  En el caso en que no se de m1 o n1, éstos parámetros serán igual a la parte entera del número de renglones o el número de columnas entre dos.
+
+  b es un parámetro opcional, si no es introducido solo regresa las submatrices de A
+
+
+Resultado:
+  A11   numpy.ndarray que representa la matriz de dimensión m1xn1
+  A12   numpy.ndarray que representa la matriz de dimensión m2xn1
+  A12   numpy.ndarray que representa la matriz de dimensión m1xn2
+  A22   numpy.ndarray que representa la matriz de dimensión m2xn2
+  b1    numpy.ndarray que representa el vector de longitud m1
+  b2    numpy.ndarray que representa el vector de longitud m2
+
+Ejemplo:
+     [ A11  A12 ]
+A =  [ A21  A22 ]
+
+b =  [  b1 ]
+     [  b2 ]
+    
+****f****crear_bloques
+
+
+
+
+
+****i****eliminacion_bloques
+
+Descripción:
+  Función que usa la eliminación por bloques para resolver un sistema de ecuaciones Ax=b.
+
+Parámetros:                            
+  A     numpy.ndarray que representa la matriz (mxn) que representan loc coeficientes del sistema de      ecuaciones
+  b     numpy.ndarray que representa el vector (mx1) que representan el lado derecho del sistema de       ecuaciones
+  m1    Número de renglones del los bloques superiores del subconjunto a resolver
+  n1    Número de columnas de los bloques del subconjunto a resolver
+
+  En el caso en que no se de m1 o n1, éstos parámetros serán igual a la parte entera del número de renglones o el número de columnas entre dos.
+
+
+Resultado:
+  x   numpy.ndarray que representa la solución al sistema de ecuaciones Ax=b
+
+Este método consiste en eliminar un subconjunto de variables y resolver un sistema más pequeño. Si el sistema más pequeño asociado a la submatriz puede resolverse entonces este método puede tener más eficiencia que uno que no trabaja por bloques.
+    
+****f****eliminacion_bloques
