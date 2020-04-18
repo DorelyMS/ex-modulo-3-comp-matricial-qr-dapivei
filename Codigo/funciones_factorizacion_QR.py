@@ -216,7 +216,29 @@ Q_j.__doc__ =busca_ayuda("Q_j")
 
 
 
-##### Nota: Solucion_SEL_QR_nxn
+
+
+def Solucion_SEL_QR_nxn(A,b):
+    """
+    Función que obtiene la solución de un sistema de ecuaciones lineales (SEL) con n ecuaciones y n incognitas
+            
+    params: A   Matriz (nxn) que representa los coeficientas de las ecuaciones
+            b   vector (nx1) constantes del sistema
+
+    return: x   vector que satisface (Ax=b)
+    """
+    Arv=fQR.matriz_auxiliar_Arv(A)
+    m=Arv.shape[0]
+    n=Arv.shape[0]
+    Q=fQR.matriz_Q(Arv)
+    R=fQR.matriz_R(Arv)
+    b_prima=np.transpose(Q)@b
+    x = solve_triangular(R, np.transpose(Q)@b)
+    return x
+
+Solucion_SEL_QR_nxn.__doc__ =busca_ayuda("Solucion_SEL_QR_nxn")
+
+
 
 
 
