@@ -312,9 +312,7 @@ def crear_bloques(A, b=True, m1=True, n1=True):
     # Condiciones de A
     # Si no se dan los n deseados, se intentan hacer los bloques casi iguales
     m1 = m//2 if m1 is True else m1
-    print(m1)
     n1 = n//2 if n1 is True else n1
-    print(n1)
 
     # Los bloques deben cumplir la condicion de tamaño
     if m1 > m:
