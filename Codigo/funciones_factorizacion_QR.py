@@ -293,10 +293,10 @@ def crear_bloques(A, b=True, m1=True, n1=True):
     """
     Esta es la función para la creación de bloques usando un arreglo de numpy
     
-    params: A   Matriz (nxn) que representa los coeficientas de las ecuaciones
-            b   vector (nx1) constantes del sistema
+    params: A   Matriz (mxn) que representa los coeficientas de las ecuaciones
+            b   vector (mx1) constantes del sistema
             n1  Numero de renglones que tendrá el 1er bloque
-            n2  Numero de renglones que tendrá el 2do bloque
+            m1  Numero de columnas que tendrá el 1er bloque
     
     return: A11 Fraccion de la matriz dividida
             A12 Fraccion de la matriz dividida
@@ -349,8 +349,8 @@ def eliminacion_bloques(A,b, m1=True, n1=True):
     """
     Función que obtiene la solución de un sistema de ecuaciones lineala (SEL) con n ecuaciones y n incognitas
             
-    params: A   Matriz (nxn) que representa los coeficientas de las ecuaciones
-            b   vector (nx1) constantes del sistema
+    params: A   Matriz (mxn) que representa los coeficientas de las ecuaciones
+            b   vector (mx1) constantes del sistema
     
     return: x1 Solucion al 1er sistema de ecuaciones obtenido con la división por bloques
             x2 Solucion al 2do sistema de ecuaciones obtenido con la división por bloques
