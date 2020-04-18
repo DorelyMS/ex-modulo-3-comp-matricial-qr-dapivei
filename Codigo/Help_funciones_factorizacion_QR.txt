@@ -209,3 +209,24 @@ La matriz Q_j se calcula con el vector v_j, correspondiente al j-ésimo vector
 de householder como: Q_j = Identidad(mxm) - Beta*v_j*v_j_transpuesta
 
 ****f****Q_j
+
+
+
+
+
+
+****i****Solucion_SEL_QR_nxn
+
+Descripción:
+	Función que obtiene la solución de un sistema de ecuaciones lineales (SEL) con n ecuaciones y n incognitas 
+	con n ecuaciones y n incognitas
+
+Parámetros:                            
+	A      Matriz (nxn) que representa los coeficientas de las ecuaciones 
+                elementos de la matriz R y Q, de la factorización QR
+	b      vector (nx1) constantes del sistema
+
+Resultado:
+	x      vector que satisface (Ax=b)
+    
+****f****Solucion_SEL_QR_nxn
