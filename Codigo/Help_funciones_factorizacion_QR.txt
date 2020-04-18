@@ -139,11 +139,11 @@ Descripción:
         apartir de la matriz Arv
 
 Parametros:
-        A_r_v   np.ndarray que representa matriz (mxn) que incluye elementos de 
-                la matriz R y Q, de la factorización QR
+        Arv   np.ndarray que representa matriz (mxn) que incluye elementos de 
+              la matriz R y Q, de la factorización QR
 
 Resultado:
-        R       np.ndarray que representa matriz (mxn) R de la factorización A=QR
+        R     np.ndarray que representa matriz (mxn) R de la factorización A=QR
 
 Visualmente la sustracción de los elementos de R se ve así:
      [ r11  r12  r13  r14 ]            [ r11  r12  r13  r14 ]
@@ -166,11 +166,11 @@ Descripción:
         apartir de la matriz Arv
 
 Parametros:
-        A_r_v   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
-                elementos de la matriz R y Q, de la factorización QR
+        Arv   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
+              elementos de la matriz R y Q, de la factorización QR
 
 Resultado:
-        R       np.ndarray que representa matriz Q (mxm) de la factorización A=QR
+        R     np.ndarray que representa matriz Q (mxm) de la factorización A=QR
 
 La matriz Q (matriz ortogonal tal que Q_transpuesta*Q es igual a la identidad (mxm)
 se calcula como el producto de las matrices Q_j's, las cuales se obtienen a partir
@@ -199,7 +199,7 @@ Descripción:
 
 Parámetros:                            
 	A_r_v   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
-                elementos de la matriz R y Q, de la factorización QR
+            elementos de la matriz R y Q, de la factorización QR
 	j       integer que indica el índice de la matriz Q_j
 
 Resultado:
@@ -218,15 +218,37 @@ de householder como: Q_j = Identidad(mxm) - Beta*v_j*v_j_transpuesta
 ****i****Solucion_SEL_QR_nxn
 
 Descripción:
-	Función que obtiene la solución de un sistema de ecuaciones lineales (SEL) con n ecuaciones y n incognitas 
-	con n ecuaciones y n incognitas
+	Función que obtiene la solución de un sistema de ecuaciones lineales (SEL) con 
+    n ecuaciones y n incognitas
 
 Parámetros:                            
 	A      Matriz (nxn) que representa los coeficientas de las ecuaciones 
-                elementos de la matriz R y Q, de la factorización QR
+           elementos de la matriz R y Q, de la factorización QR
 	b      vector (nx1) constantes del sistema
 
 Resultado:
 	x      vector que satisface (Ax=b)
-    
+
+El Sistema de Ecuaciones Lineales establecido como Ax=b, es resuelto con esta función
+mediante la factorización QR como a continuación se explica:
+
+  Si A*x = b y A = Q*R, con A matriz (mxn), b (mx1) y Q una matriz ortogonal (mxm) y 
+                            R (mxn) una matriz triangular superior
+  entonces Q*R*x = b.
+  
+  Aprovechando la propiedad de Q^(-1)=Q, es decir, Q^(-1)*Q=Identidad,
+  si multiplicamos ambos lados de la última ecuación por Q^(-1) por la izquierda se tiene
+  
+  Q^(-1)*Q*R*x = Q^(-1)*b
+  
+  que equivale a:
+  
+  R*x = Q*b
+  
+  Es decir, el resolver el sistema Ax=b es equivalente a resolver R*x=Q*b, donde
+  R es una matriz triangular superior, por lo que se puede resolver este sistema con un 
+  método de sustituición hacia atrás que implica una simple y paulatina sustitución
+  de valores. Nótese que por las propiedades de Q, no fue nunca necesario calcular
+  su inversa, lo cual hubiera implicado cálculos adicionales
+  
 ****f****Solucion_SEL_QR_nxn
