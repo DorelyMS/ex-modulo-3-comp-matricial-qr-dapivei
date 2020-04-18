@@ -340,6 +340,8 @@ def crear_bloques(A, b=True, m1=True, n1=True):
 
     return A11,A21,A12,A22,b1,b2
 
+crear_bloques.__doc__ =busca_ayuda("crear_bloques")
+
 
 
 
@@ -385,3 +387,5 @@ def eliminacion_bloques(A,b, m1=True, n1=True):
     #x1 = np.linalg.solve(A11,b1-A12@x2)
 
     return np.concatenate((x1,x2), axis=0)
+
+eliminacion_bloques.__doc__ =busca_ayuda("eliminacion_bloques")
