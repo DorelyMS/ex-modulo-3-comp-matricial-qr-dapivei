@@ -5,7 +5,7 @@ import numpy as np
 import copy
 import codecs
 import sys
-
+from scipy.linalg import solve_triangular
 
 
 def busca_ayuda(cadena):
@@ -44,6 +44,15 @@ def crear_matriz_aleatoria(renglones,columnas,maximo_valor,minimo_valor,entero=F
             
     return: M               Matriz con numeros al azar
     """
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if isinstance(renglones, int)==False or isinstance(columnas, int)==False:
+        sys.exit('Los parámetros de renglones y columnas deben ser enteros positivos')
+    elif renglones<=0 or columnas<=0:
+        sys.exit('Los parámetros de renglones y columnas deben ser enteros positivos')            
+    if isinstance(maximo_valor, (int, float))==False or isinstance(minimo_valor, (int, float))==False:
+        sys.exit('Los parámetros maximo_valor y minimo_valor deben ser numericos')
+
     #Se inicializa una matriz llena de ceros con las dimensiones deseadas (mxn)
     M=np.zeros((renglones, columnas))
     for i in range(renglones):
@@ -71,6 +80,11 @@ def house(x):
     return: Beta    factor para obtener matriz de reflexión householder Rf
             v       vector de householder
     """
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(x) is not np.ndarray:
+        sys.exit('x debe ser de tipo numpy.ndarray')
+    
     #longitud del vector x=(x_0,x_1,x_2,...,x_(m-1))
     m=len(x)
     norm_2_m=x[1:m].dot(np.transpose(x[1:m]))
@@ -112,6 +126,11 @@ def matriz_auxiliar_Arv(A):
                    y los vectores householder con los que se puede obtener la matriz Q, y 
                    con ello la factorización QR
     """
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(A) is not np.ndarray:
+        sys.exit('A debe ser de tipo numpy.ndarray')
+    
     #m contiene el numero de renglones y n el de columnas
     m=A.shape[0]
     n=A.shape[1]
@@ -120,7 +139,8 @@ def matriz_auxiliar_Arv(A):
     for j in range(n):
         beta, v=house(Arv[j:m,j])
         #Con esta multiplicación se van generando las componentes r de la matriz R
-        Arv[j:m,j:n]=Arv[j:m,j:n]-beta*(np.outer(v,v)@Arv[j:m,j:n])
+        #Arv[j:m,j:n]=Arv[j:m,j:n]-beta*(np.outer(v,v)@Arv[j:m,j:n]) #OBSERVACIÓN: Checar cual es más eficiente (este o el renglón de abajo)
+        Arv[j:m,j:n]=Arv[j:m,j:n]-beta*np.outer(v,(np.transpose(v)@Arv[j:m,j:n]))
         #se guarda en cada columnas los valores de v d, excepto la primer componente (que vale 1)
         Arv[(j+1):m,j]=v[1:(m-j)]
     return Arv
@@ -132,22 +152,29 @@ matriz_auxiliar_Arv.__doc__ =busca_ayuda("matriz_auxiliar_Arv")
 
 
 
-def matriz_R(A_r_v):
+def matriz_R(Arv):
     """
     Función que devuelve la matriz R de la factorización QR de una matriz A, 
     apartir de la matriz Arv
     
-    params: A_r_v   Matriz (mxn) que incluye elementos de la matriz R y Q, de la factorización QR
+    params: Arv   Matriz (mxn) que incluye elementos de la matriz R y Q, de la factorización QR
 
-    return: R       Matriz (mxn) R de la factorización A=QR
+    return: R     Matriz (mxn) R de la factorización A=QR
     """
-    m=A_r_v.shape[0]
-    n=A_r_v.shape[1]
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(Arv) is not np.ndarray:
+        sys.exit('Arv debe ser de tipo numpy.ndarray')
+    elif Arv.shape[0]<Arv.shape[1]:
+        sys.exit('El numero de renglones de Arv tiene que ser igual o mayor al no. de columnas')
+
+    m=Arv.shape[0]
+    n=Arv.shape[1]
     R=np.zeros((m,n))
-    #la matriz A_r_v ya tiene los elementos de r en el triangulo superior
+    #la matriz Arv ya tiene los elementos de r en el triangulo superior
     #por lo que únicamente se sustraen dichos valores y lo demás se deja en ceros
     for j in range(n):
-        R[0:(j+1),j]=A_r_v[0:(j+1),j]
+        R[0:(j+1),j]=Arv[0:(j+1),j]
     return R
 
 matriz_R.__doc__ =busca_ayuda("matriz_R")
@@ -157,28 +184,36 @@ matriz_R.__doc__ =busca_ayuda("matriz_R")
 
 
 
-def matriz_Q(A_r_v):
+def matriz_Q(Arv):
     """
     Función que devuelve la matriz R de la factorización QR de una matriz A,
     apartir de la matriz Arv
     
-    params: A_r_v   Matriz (mxn) con la info escencial para la factorización
+    params: Arv  Matriz (mxn) con la info escencial para la factorización
 
-    return: Q       Matriz Q (mxm) de la factorización A=QR
+    return: Q    Matriz Q (mxm) de la factorización A=QR
     """
-    m=A_r_v.shape[0]
-    n=A_r_v.shape[1]
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(Arv) is not np.ndarray:
+        sys.exit('Arv debe ser de tipo numpy.ndarray')
+    elif Arv.shape[0]<Arv.shape[1]:
+        sys.exit('El numero de renglones de Arv tiene que ser igual o mayor al no. de columnas')
+        
+    m=Arv.shape[0]
+    n=Arv.shape[1]
     Q=np.eye(m)
     I=np.eye(m)
     for j in range(n-1,-1,-1):
         #Se sustrae la información de los vectores de householder contenida
         #en la matriz Arv, agregando la primera entrada que no está en dicha matriz (y que es 1)
-        v=np.concatenate((1,A_r_v[(j+1):m,j]), axis=None)
+        v=np.concatenate((1,Arv[(j+1):m,j]), axis=None)
         #Se calcula el factor beta para obtener la matriz de reflexión
-        beta=2/(1+A_r_v[(j+1):m,j].dot(A_r_v[(j+1):m,j]))
+        beta=2/(1+Arv[(j+1):m,j].dot(Arv[(j+1):m,j]))
         #Aquí se va acumulando el producto de las Qj's para llegar a Q_(n-1)*Q(n-2)*...Q_2*Q_1*Q_0=Q
         #al final del ciclo
-        Q[j:m,j:m]=(I[j:m,j:m]-beta*np.outer(v,v))@Q[j:m,j:m]
+        #Q[j:m,j:m]=(I[j:m,j:m]-beta*np.outer(v,v))@Q[j:m,j:m] #OBSERVACION: Checar si este o el de abajo es más eficiente
+        Q[j:m,j:m]=I[j:m,j:m]@Q[j:m,j:m]-beta*np.outer(v,np.transpose(v)@Q[j:m,j:m])
     #La Q_(n-1) es la matriz más chica y la última que calculamos para generar ceros en la última
     #columna de A, y la Q_1 es la matriz más grande y la primera que calculamos para generar ceros
     #en la 1era columna de A
@@ -191,23 +226,34 @@ matriz_Q.__doc__ =busca_ayuda("matriz_Q")
 
 
 
-def Q_j(A_r_v,j):
+def Q_j(Arv,j):
     """
     Función que calcula la matriz Qj (en el proceso de obtención de factorización QR se van 
     obteniendo n Qj's, que si se multiplican todas da por resultado Q=Q_1*Q_2*...*Q_n)
                             
-    params: A_r_v   Matriz (mxn) con la info escencial
-            j       indica el índice de la matriz Q_j
+    params: Arv   Matriz (mxn) con la info escencial
+            j     indica el índice de la matriz Q_j
 
-    return: Qj      Matriz Q de la j-esima iteración del proceso iterativo de factorización QR
+    return: Qj    Matriz Q de la j-esima iteración del proceso iterativo de factorización QR
     """
-    m=A_r_v.shape[0]
-    n=A_r_v.shape[1]
+
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(Arv) is not np.ndarray:
+        sys.exit('Arv debe ser de tipo numpy.ndarray')
+    elif Arv.shape[0]<Arv.shape[1]:
+        sys.exit('El numero de renglones de Arv tiene que ser igual o mayor al no. de columnas')
+    if isinstance(j, int)==False:
+        sys.exit('El parámetro j deber ser un entero')
+    elif 1>j or j>Arv.shape[1]:
+        sys.exit('El parámetro j debe estar en el rango [1,no. columnas de Arv]')
+    
+    m=Arv.shape[0]
+    n=Arv.shape[1]
     Qj=np.eye(m)
     #Para construir Q_j requerimos usar el vector v contenido en Arv contenido
     #en la j-1 columna (considerando que en Python la primer columna es la cero)
-    v=np.concatenate((1,A_r_v[j:m,(j-1)]), axis=None)
-    beta=2/(1+A_r_v[j:m,(j-1)].dot(A_r_v[j:m,(j-1)]))
+    v=np.concatenate((1,Arv[j:m,(j-1)]), axis=None)
+    beta=2/(1+Arv[j:m,(j-1)].dot(Arv[j:m,(j-1)]))
     Qj[(j-1):m,(j-1):m]=np.eye(m-(j-1))-beta*np.outer(v,v)
     return Qj
 
@@ -227,11 +273,11 @@ def Solucion_SEL_QR_nxn(A,b):
 
     return: x   vector que satisface (Ax=b)
     """
-    Arv=fQR.matriz_auxiliar_Arv(A)
+    Arv=matriz_auxiliar_Arv(A)
     m=Arv.shape[0]
     n=Arv.shape[0]
-    Q=fQR.matriz_Q(Arv)
-    R=fQR.matriz_R(Arv)
+    Q=matriz_Q(Arv)
+    R=matriz_R(Arv)
     b_prima=np.transpose(Q)@b
     x = solve_triangular(R, np.transpose(Q)@b)
     return x
