@@ -7,6 +7,7 @@
 </div>
 
 ***
+
 <div align="justify">
 
 ## Índice
@@ -60,17 +61,25 @@
 ## Sobre el Desarrollo del Proyecto
 
 
-#### Metodología
+#### *Framework*
 
 El equipo que elaboró el presente proyecto se estructuró conforme con el *framework scrum*: un grupo de programación, un grupo de revisión y project manager.
+
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Images/scrumprocess.png">
+ 
+ **Fuente**: [What is scrum? An overview of the Agile Framework](https://www.youtube.com/watch?v=Ifc2Z4nXMvE)
+
+</p>
+
+
+Para la coordinación del equipo, se sostuvo una reunión dónde se planificó y elaboró la lista de tareas de la iteración necesarias para desarrollar los requisitos seleccionados. Cada cierto ciertos días, se realizaron reuniones de sincronización para revisar el [*scrum taskboard*](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/projects/1)
+y revisar el trabajo que el resto está realizando (dependencias entre tareas, progreso hacia el objetivos finales y obstáculos que surgieron.
 
 #### Milestones
 
 Para este proyecto se definieron, conforme con la especificación del método asignado, 3 milestones: **1.** [Implementación Factorización QR](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/milestone/1); **2.** [Implementación Método Eliminación por Bloques](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/milestone/2); **3.** [Integración Factorización QR con Método de Eliminación por Bloques](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/milestone/3). A su vez, cada uno de los *milestones* definidos, englobó a varios *issues* relativos al tópico del milestone.
-
-#### Reuniones periódicas
-
-Cada cierto tiempo, el equipo sostuvo reuniones para: verificar el avance de los objetivos y compartir con los integrantes del grupo los obstáculos y hallazgos durante la ejecución de las distintas tareas.
 
 
 #### Issues
@@ -102,6 +111,7 @@ En total se levantaron `25` issues, de los cuáles la mayoría de los issues fue
 
 > + Creación de un achivo con extensión .py que incluya todas las funciones utilizadas para Solución de sistemas de Ecuaciones Lineales a través del algoritmo de Eliminación por Bloques.
 > + Homogeneización de la documentación en formato `Google Docstrings`.
+> + Inclusión de una validación sobre las dimensiones de la matriz de entrada. En caso de no cumplirse la condición m>=n, entonces desplegar algún mensaje indicando: "Las dimensiones de la matriz (A) no son válidas".
 
 > Una vez que los programadores resolvieron los issues que levantaron los revisores. Se asignó finalmente el siguiente set de issues a los integrantes del equipo:
 
