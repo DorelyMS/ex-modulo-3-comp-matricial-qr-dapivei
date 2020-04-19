@@ -352,6 +352,9 @@ def eliminacion_bloques(A,b, m1=False, n1=False):
     if n1==False:
         n1=n//2
 
+    if m != n:
+        sys.exit('A debe ser cuadrada')
+
     if np.linalg.det(A)==0:
         sys.exit('A debe ser no singular')
 
