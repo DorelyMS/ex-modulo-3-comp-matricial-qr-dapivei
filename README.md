@@ -110,7 +110,7 @@ En total se levantaron `25` issues, de los cuáles la mayoría de los issues fue
 
 > + Creación de un achivo con extensión .py que incluya todas las funciones utilizadas para Solución de sistemas de Ecuaciones Lineales a través del algoritmo de Eliminación por Bloques.
 > + Homogeneización de la documentación en formato `Google Docstrings`.
-> + Inclusión de una validación sobre las dimensiones de la matriz de entrada. En caso de no cumplirse la condición m>=n, entonces desplegar algún mensaje indicando: "Las dimensiones de la matriz (A) no son válidas".
+> + Inclusión de una validación sobre las dimensiones de la matriz de entrada. En caso de no cumplirse la condición m>=n, entonces desplegar el siguiente mensaje: `Las dimensiones de la matriz (A) no son válidas`.
 
 > Una vez que los programadores resolvieron los issues que levantaron los revisores. Se asignó finalmente el siguiente set de issues a los integrantes del equipo:
 
