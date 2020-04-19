@@ -74,8 +74,7 @@ El equipo que elaboró el presente proyecto se estructuró conforme con el *fram
 </p>
 
 
-Para la coordinación del equipo, se sostuvo una reunión dónde se planificó y elaboró la lista de tareas de la iteración necesarias para desarrollar los requisitos seleccionados. Cada cierto ciertos días, se realizaron reuniones de sincronización para revisar el [*scrum taskboard*](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/projects/1)
-y revisar el trabajo que el resto está realizando (dependencias entre tareas, progreso hacia el objetivos finales y obstáculos que surgieron.
+Para la coordinación del equipo, se sostuvo una reunión dónde se planificó y elaboró la lista de tareass necesarias para desarrollar los requisitos seleccionados del proyecto. Cada ciertos días, se realizaron reuniones de sincronización para revisar: 1) el estatus del [*scrum taskboard*](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/projects/1); 2) el trabajo de los integrantes del equipo(dependencias entre tareas, progreso hacia el objetivos finales y obstáculos que surgieron.
 
 #### Milestones
 
