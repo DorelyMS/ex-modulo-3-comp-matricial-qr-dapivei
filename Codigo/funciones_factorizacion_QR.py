@@ -130,6 +130,9 @@ def matriz_auxiliar_Arv(A):
     #Se checa que los parámetros sean congruentes con la funcionalidad
     if type(A) is not np.ndarray:
         sys.exit('A debe ser de tipo numpy.ndarray')
+    m,n=A.shape
+    if m<n:
+        sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
     
     #m contiene el numero de renglones y n el de columnas
     m=A.shape[0]
@@ -152,74 +155,33 @@ matriz_auxiliar_Arv.__doc__ =busca_ayuda("matriz_auxiliar_Arv")
 
 
 
-def matriz_R(Arv):
+def matriz_Q_R(A):
     """
-    Función que devuelve la matriz R de la factorización QR de una matriz A, 
-    apartir de la matriz Arv
+    Función que devuelve la matriz R y Q de la factorización QR de una matriz A
     
-    params: Arv   Matriz (mxn) que incluye elementos de la matriz R y Q, de la factorización QR
-
-    return: R     Matriz (mxn) R de la factorización A=QR
-    """
-    
-    #Se checa que los parámetros sean congruentes con la funcionalidad
-    if type(Arv) is not np.ndarray:
-        sys.exit('Arv debe ser de tipo numpy.ndarray')
-    elif Arv.shape[0]<Arv.shape[1]:
-        sys.exit('El numero de renglones de Arv tiene que ser igual o mayor al no. de columnas')
-
-    m=Arv.shape[0]
-    n=Arv.shape[1]
-    R=np.zeros((m,n))
-    #la matriz Arv ya tiene los elementos de r en el triangulo superior
-    #por lo que únicamente se sustraen dichos valores y lo demás se deja en ceros
-    for j in range(n):
-        R[0:(j+1),j]=Arv[0:(j+1),j]
-    return R
-
-matriz_R.__doc__ =busca_ayuda("matriz_R")
-
-
-
-
-
-
-def matriz_Q(Arv):
-    """
-    Función que devuelve la matriz R de la factorización QR de una matriz A,
-    apartir de la matriz Arv
-    
-    params: Arv  Matriz (mxn) con la info escencial para la factorización
+    params: A    Matriz (mxn)
 
     return: Q    Matriz Q (mxm) de la factorización A=QR
+            R    Matriz Q (mxm) de la factorización A=QR
     """
     
     #Se checa que los parámetros sean congruentes con la funcionalidad
-    if type(Arv) is not np.ndarray:
-        sys.exit('Arv debe ser de tipo numpy.ndarray')
-    elif Arv.shape[0]<Arv.shape[1]:
-        sys.exit('El numero de renglones de Arv tiene que ser igual o mayor al no. de columnas')
-        
-    m=Arv.shape[0]
-    n=Arv.shape[1]
+    if type(A) is not np.ndarray:
+        sys.exit('A debe ser de tipo numpy.ndarray')
+    elif A.shape[0]<A.shape[1]:
+        sys.exit('El numero de renglones de A tiene que ser igual o mayor al no. de columnas')
+    
+    Arv=matriz_auxiliar_Arv(A)
+    m,n=A.shape
     Q=np.eye(m)
-    I=np.eye(m)
-    for j in range(n-1,-1,-1):
-        #Se sustrae la información de los vectores de householder contenida
-        #en la matriz Arv, agregando la primera entrada que no está en dicha matriz (y que es 1)
-        v=np.concatenate((1,Arv[(j+1):m,j]), axis=None)
-        #Se calcula el factor beta para obtener la matriz de reflexión
-        beta=2/(1+Arv[(j+1):m,j].dot(Arv[(j+1):m,j]))
-        #Aquí se va acumulando el producto de las Qj's para llegar a Q_(n-1)*Q(n-2)*...Q_2*Q_1*Q_0=Q
-        #al final del ciclo
-        #Q[j:m,j:m]=(I[j:m,j:m]-beta*np.outer(v,v))@Q[j:m,j:m] #OBSERVACION: Checar si este o el de abajo es más eficiente
-        Q[j:m,j:m]=I[j:m,j:m]@Q[j:m,j:m]-beta*np.outer(v,np.transpose(v)@Q[j:m,j:m])
-    #La Q_(n-1) es la matriz más chica y la última que calculamos para generar ceros en la última
-    #columna de A, y la Q_1 es la matriz más grande y la primera que calculamos para generar ceros
-    #en la 1era columna de A
-    return Q
+    R=copy.copy(A)
+    for j in range(n):
+        Qj=Q_j(Arv,j+1)
+        Q=Q@Qj
+        R=Q_j(Arv,j+1)@R
+    return Q,R
 
-matriz_Q.__doc__ =busca_ayuda("matriz_Q")
+matriz_Q_R.__doc__ =busca_ayuda("matriz_Q_R")
 
 
 
@@ -247,8 +209,7 @@ def Q_j(Arv,j):
     elif 1>j or j>Arv.shape[1]:
         sys.exit('El parámetro j debe estar en el rango [1,no. columnas de Arv]')
     
-    m=Arv.shape[0]
-    n=Arv.shape[1]
+    m,n=Arv.shape
     Qj=np.eye(m)
     #Para construir Q_j requerimos usar el vector v contenido en Arv contenido
     #en la j-1 columna (considerando que en Python la primer columna es la cero)
@@ -273,13 +234,27 @@ def Solucion_SEL_QR_nxn(A,b):
 
     return: x   vector que satisface (Ax=b)
     """
-    Arv=matriz_auxiliar_Arv(A)
-    m=Arv.shape[0]
-    n=Arv.shape[0]
-    Q=matriz_Q(Arv)
-    R=matriz_R(Arv)
+
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(A) is not np.ndarray or type(b) is not np.ndarray: #esto implica que A y b tienen más de 1 elemento
+        sys.exit('A y b deben ser de tipo numpy.ndarray')
+    m,n = A.shape
+    if m<n:
+        sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
+    elif b.shape[0]!= m:
+    #elif b.shape[0]!= m or b.shape[1]!= 1:
+        sys.exit('b debe representar un vector columna (mx1), m=no. renglones de A')
+    else:
+        try:
+            flag=b.shape[1]
+        except Exception:
+            flag=1
+        if flag!=1:
+            sys.exit("b debe representar un vector de m renglones y 1 columna")
+
+    Q,R=matriz_Q_R(A)
     b_prima=np.transpose(Q)@b
-    x = solve_triangular(R, np.transpose(Q)@b)
+    x=solve_triangular(R, b_prima,lower=False)
     return x
 
 Solucion_SEL_QR_nxn.__doc__ =busca_ayuda("Solucion_SEL_QR_nxn")
@@ -288,8 +263,7 @@ Solucion_SEL_QR_nxn.__doc__ =busca_ayuda("Solucion_SEL_QR_nxn")
 
 
 
-
-def crear_bloques(A, b=True, m1=True, n1=True):
+def crear_bloques(A, b, m1=False, n1=False):
     """
     Esta es la función para la creación de bloques usando un arreglo de numpy
     
@@ -306,31 +280,30 @@ def crear_bloques(A, b=True, m1=True, n1=True):
             b2  Fraccion del vector dividido
     """
 
-    # Primero definimos el n
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(A) is not np.ndarray or type(b) is not np.ndarray: #esto implica que A y b tienen más de 1 elemento
+        sys.exit('A y b deben ser de tipo numpy.ndarray')
     m,n = A.shape
-
-    # Condiciones de A
-    # Si no se dan los n deseados, se intentan hacer los bloques casi iguales
-    m1 = m//2 if m1 is True else m1
-    n1 = n//2 if n1 is True else n1
-
-    # Los bloques deben cumplir la condicion de tamaño
-    if m1 > m:
-        sys.exit('m1 debe ser menor que m')
-    elif n1 > n:
-        sys.exit('n1 debe ser menor que n')
-
-
-    # Condiciones de b
-    if  b is True:
-        b1 = None
-        b2 = None
-    elif len(b) == m:
-        b1 = b[:m1]
-        b2 = b[m1:m]
+    if m<n:
+        sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
+    elif b.shape[0]!= m:
+    #elif b.shape[0]!= m or b.shape[1]!= 1:
+        sys.exit('b debe representar un vector columna (mx1), m=no. renglones de A')
     else:
-        sys.exit('los renglones de A y b deben ser del mismo tamaño')
-
+        try:
+            flag=b.shape[1]
+        except Exception:
+            flag=1
+        if flag!=1:
+            sys.exit("b debe representar un vector de m renglones y 1 columna")    
+    
+    if m1==False:
+        m1=m//2
+    if n1==False:
+        n1=n//2
+    
+    b1 = b[:m1]
+    b2 = b[m1:m]
     A11 = A[:m1,:n1]
     A21 = A[m1:m,:n1]
     A12 = A[:m1,n1:n]
@@ -343,7 +316,9 @@ crear_bloques.__doc__ =busca_ayuda("crear_bloques")
 
 
 
-def eliminacion_bloques(A,b, m1=True, n1=True):
+
+
+def eliminacion_bloques(A,b, m1=False, n1=False):
     """
     Función que obtiene la solución de un sistema de ecuaciones lineala (SEL) con n ecuaciones y n incognitas
             
@@ -353,36 +328,56 @@ def eliminacion_bloques(A,b, m1=True, n1=True):
     return: x1 Solucion al 1er sistema de ecuaciones obtenido con la división por bloques
             x2 Solucion al 2do sistema de ecuaciones obtenido con la división por bloques
     """
+    
+    #Se checa que los parámetros sean congruentes con la funcionalidad
+    if type(A) is not np.ndarray or type(b) is not np.ndarray: #esto implica que A y b tienen más de 1 elemento
+        sys.exit('A y b deben ser de tipo numpy.ndarray')
+    m,n = A.shape
+    if m<n:
+        sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
+        
+    elif b.shape[0]!= m:
+        sys.exit('b debe representar un vector columna (mx1), m=no. renglones de A')
+    else:
+        try:
+            flag=b.shape[1]
+        except Exception:
+            flag=1
+        if flag!=1:
+            sys.exit("b debe representar un vector de m renglones y 1 columna")
+    
+    if m1==False:
+        m1=m//2
+    if n1==False:
+        n1=n//2
+
     if np.linalg.det(A)==0:
         sys.exit('A debe ser no singular')
 
-    A11,A21,A12,A22,b1,b2 = crear_bloques(A,b,m1,n1)
+    A11,A21,A12,A22,b1,b2=crear_bloques(A,b,m1,n1)
 
+    # 1. Calcular Y=A11^{-1}A12 y y=A11^{-1}b1 teniendo cuidado en no calcular la inversa sino un sistema de ecuaciones lineales
     if np.linalg.det(A11)==0:
         sys.exit('A11 debe ser no singular')
+    y=Solucion_SEL_QR_nxn(A11,b1)
+    #y=np.linalg.solve(A11,b1)
+    
+    Y=np.zeros((n1,n-n1))
+    for j in range(n-n1):
+        Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j])
+        #Y[:,j]=np.linalg.solve(A11,A12[:,j])
+    
+    # 2. Calcular el complemento de Schur del bloque A11 en A. Calcular b_hat
+    S=A22-A21@Y
+    b_h=b2-A21@y
 
-    ## 1. Calcular A11^{-1}A12 y A11^{-1}b1 teniendo cuidado en no calcular la inversa sino un sistema de ecuaciones lineales
-    ## Aquí se debe usar el método QR una vez que esté desarrollado
+    # 3. Resolver Sx2 = b_hat
+    x2=Solucion_SEL_QR_nxn(S,b_h)
+    #x2=np.linalg.solve(S,b_h)
 
-    ## Definimos y = A11^{-1}b1, por tanto A11y=b1. Resolviendo el sistema anterior para 11y:
-    y = Solucion_SEL_QR_nxn(A11,b1)
-    #y = np.linalg.solve(A11,b1)
-
-    ## Definimos Y = A11^{-1}A12
-    Y = Solucion_SEL_QR_nxn(A11,A12)
-    #Y = np.linalg.solve(A11,A12)
-
-    ## 2. Calcular el complemento de Schur del bloque A11 en A. Calcular b_hat
-    S = A22 - A21@Y
-    b_h = b2 - A21@y
-
-    ## 3. Resolver Sx2 = b_hat
-    x2 = Solucion_SEL_QR_nxn(S,b_h)
-    #x2 = np.linalg.solve(S,b_h)
-
-    ## 4. Resolver A11x1 = b1-A12X2
-    x1 = Solucion_SEL_QR_nxn(A11,b1-A12@x2)
-    #x1 = np.linalg.solve(A11,b1-A12@x2)
+    # 4. Resolver A11x1 = b1-A12x2
+    x1=Solucion_SEL_QR_nxn(A11,b1-A12@x2)
+    #x1=np.linalg.solve(A11,b1-A12@x2)
 
     return np.concatenate((x1,x2), axis=0)
 
