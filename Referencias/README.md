@@ -20,3 +20,5 @@ Bibliografía y material consultado para la elaboración del presente proyecto:
 + [3.3.Solucion_de_SEL_y_FM](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb).
 
 + [3.3.c.Factorizacion_QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb) 
+
++ G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.
