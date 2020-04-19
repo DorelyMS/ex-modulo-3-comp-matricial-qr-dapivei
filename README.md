@@ -82,7 +82,7 @@ Para dar orden durante el levantamiento de los *issues*, se definió que la proj
 
 ##### Sobre los Issues
 
-En total se levantaron `25 issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
+En total se levantaron `25` issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
 
 
 > Instrucciones relativas a la programación del método que se nos fue asignado: eliminación por bloques con el apoyo del método matricial de factorización QR. Para ellos, tpdos los issues se englobaron dentro de los tres milestones que previamente habíamos definido.
