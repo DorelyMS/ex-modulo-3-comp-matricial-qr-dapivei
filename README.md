@@ -11,15 +11,15 @@
 
 ## Índice
 
-- [ ] Objetivos del proyecto: descripción de los objetivos generales y específicos del proyecto.
+- [X] **Objetivos del proyecto**: descripción de los objetivos generales y específicos del proyecto.
 
-- [ ] Contenido del Repositorio: Distintas carpetas y productos que se fueron desarrollando para cumplir con los objetivos previamente planteadps, así como las herramientas que empleamos para organizarnos como equipo.
+- [X] **Contenido del Repositorio**: Distintas carpetas y productos que se fueron desarrollando para cumplir con los objetivos previamente planteadps, así como las herramientas que empleamos para organizarnos como equipo.
 
-- [ ] Sobre el desarrollo del proyectos: Explicación suscitan de las herramientas que empleamos para organizarnos para el cumplimiento del objetivo del presente proyecto.
+- [X] **Sobre el desarrollo del proyectos**: Explicación suscitan de las herramientas que empleamos para organizarnos para el cumplimiento del objetivo del presente proyecto.
 
-- [ ] Conclusiones: Reflexiones finales sobre el desarrollo del proyecto.
+- [X] **Conclusiones**: Reflexiones finales sobre el desarrollo del proyecto.
 
-- [ ] Información de contacto.
+- [X] **Información de contacto**.
 
 
 **Nota importante:** La totalidad de los documentos y notebooks en este repo pueden ser revisados interactivamente si se utiliza el boton de binder y se clona el repo.
@@ -82,26 +82,26 @@ Para dar orden durante el levantamiento de los *issues*, se definió que la proj
 
 ##### Sobre los Issues
 
-En total se levantaron $25$ issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
+En total se levantaron `25 issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
 
 
 > Instrucciones relativas a la programación del método que se nos fue asignado: eliminación por bloques con el apoyo del método matricial de factorización QR. Para ellos, tpdos los issues se englobaron dentro de los tres milestones que previamente habíamos definido.
 
 > Tasks relativos a la revisión del método implementado por los programadores, mediante los cuáles se solicitaba a los revisores revisar la precisión y documentación adecuada de las funciones. Así como la ejecución de pruebas específicas que probaran: la precisión Factorización QR y que el método de eliminación por bloques con QR funcione adecuadamente considerando los siguientes casos:
-> + Sistemas de ecuaciones con soluciones infinitas: los métodos implementados arrojen comentarios indicando que la condición no fue cumplida (que la matriz sea singular) y por tanto que las funciones no sean completadas. Verificación con las librerías disponibles en python, como ser $np.linalg.solve(A,b)$.
+> + Sistemas de ecuaciones con soluciones infinitas: los métodos implementados arrojen comentarios indicando que la condición no fue cumplida (que la matriz sea singular) y por tanto que las funciones no sean completadas. Verificación con las librerías disponibles en python, como ser `np.linalg.solve(A,b)`.
 
 
-> + Sistemas de ecuaciones únicas: que la función eliminacion_bloques(A,b) es capaz de resolver efectivamente sistemas de ecuaciones con solución única y que sus resultados sean consistentes con los resultados que arroja la librería $np.linalg.solve(A,b)$ de python.
+> + Sistemas de ecuaciones únicas: que la función eliminacion_bloques(A,b) es capaz de resolver efectivamente sistemas de ecuaciones con solución única y que sus resultados sean consistentes con los resultados que arroja la librería `np.linalg.solve(A,b)` de python.
 
->+ Sistemas ecuaciones sin solución: los métodos implementados arrojen comentarios indicando que la condición no fue cumplida (que la matriz sea singular) y por tanto que las funciones no sean completadas. Verificación con las librerías disponibles en python, como ser $np.linalg.solve(A,b)$.
+>+ Sistemas ecuaciones sin solución: los métodos implementados arrojen comentarios indicando que la condición no fue cumplida (que la matriz sea singular) y por tanto que las funciones no sean completadas. Verificación con las librerías disponibles en python, como ser `np.linalg.solve(A,b)`.
 
 
-> En respuesta a estos *task*, los revisores levantaron $issues$ relativos a los siguientes temas:
+> En respuesta a estos *task*, los revisores levantaron *issues* relativos a los siguientes temas:
 
 > + Solicitudes de revisión y homogeneización de los nombres de las funciones y los parámetros empleados, de manera que estos sean informativos para el usuario. , de manera que éste de al usuario una idea general de lo que la realiza la función. Asímismo, se solicitó la mejor descripción de los distintos bloques del código.
 
 > + Creación de un achivo con extensión .py que incluya todas las funciones utilizadas para Solución de sistemas de Ecuaciones Lineales a través del algoritmo de Eliminación por Bloques.
-> + Homogeneización de la documentación en formato $Google Docstrings$.
+> + Homogeneización de la documentación en formato `Google Docstrings`.
 
 > Una vez que los programadores resolvieron los issues que levantaron los revisores. Se asignó finalmente el siguiente set de issues a los integrantes del equipo:
 
