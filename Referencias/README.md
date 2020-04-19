@@ -21,4 +21,12 @@ Bibliografía y material consultado para la elaboración del presente proyecto:
 
 + [3.3.c.Factorizacion_QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb) 
 
++ [What is scrum? An overview of the Agile Framework](https://www.youtube.com/watch?v=Ifc2Z4nXMvE)
+
++ [Systems of Linear Equations](https://www.mathsisfun.com/algebra/systems-linear-equations.html)
+
++ [Matrices](http://wiki.nuaj.net/index.php?title=Matrices)
+
++ [Householder Transformations](https://slideplayer.com/slide/4598484/)
+
 + G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.
