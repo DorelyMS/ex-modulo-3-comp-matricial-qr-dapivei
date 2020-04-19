@@ -45,7 +45,7 @@
 
 - [X] [Instrucciones](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/instrucciones.md): Instrucciones del profesor, relativas a los objetivos del exámen y los roles de las personas que integran los grupos.
 
-- [X] [Código](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Codigo): Funciones creadas para cumplir con el objetivo del proyecto. Entre los documentos disponibles en este sitio, el más importantes es el módulo que se creó: [moduloEliminacionBloquesQR.py](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Codigo/moduloEliminacionBloquesQR.py)
+- [X] [Código](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Codigo): Funciones creadas para cumplir con el objetivo del proyecto. Entre los documentos disponibles en este sitio, el más importantes es el módulo que se creó: [funciones_factorizacion_QR.py](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Codigo/funciones_factorizacion_QR.py)
 
 - [X] [Pruebas](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas): Contiene las diferentes pruebas que se realizaron a las funciones propuestas para verificar que los algoritmos sean precisos y arrojen mensajes de error cuando los datos de entrada no cumplan los requisitos determinados por el algoritmo que se está implementando.
 
