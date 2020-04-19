@@ -242,7 +242,6 @@ def Solucion_SEL_QR_nxn(A,b):
     if m<n:
         sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
     elif b.shape[0]!= m:
-    #elif b.shape[0]!= m or b.shape[1]!= 1:
         sys.exit('b debe representar un vector columna (mx1), m=no. renglones de A')
     else:
         try:
@@ -251,6 +250,9 @@ def Solucion_SEL_QR_nxn(A,b):
             flag=1
         if flag!=1:
             sys.exit("b debe representar un vector de m renglones y 1 columna")
+
+    if np.linalg.det(A)==0:
+        sys.exit('A debe ser no singular')
 
     Q,R=matriz_Q_R(A)
     b_prima=np.transpose(Q)@b
@@ -287,7 +289,6 @@ def crear_bloques(A, b, m1=False, n1=False):
     if m<n:
         sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
     elif b.shape[0]!= m:
-    #elif b.shape[0]!= m or b.shape[1]!= 1:
         sys.exit('b debe representar un vector columna (mx1), m=no. renglones de A')
     else:
         try:
@@ -365,7 +366,6 @@ def eliminacion_bloques(A,b, m1=False, n1=False):
     Y=np.zeros((n1,n-n1))
     for j in range(n-n1):
         Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j])
-        #Y[:,j]=np.linalg.solve(A11,A12[:,j])
     
     # 2. Calcular el complemento de Schur del bloque A11 en A. Calcular b_hat
     S=A22-A21@Y
