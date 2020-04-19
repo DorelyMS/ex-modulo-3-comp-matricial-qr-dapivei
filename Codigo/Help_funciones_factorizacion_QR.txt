@@ -131,48 +131,21 @@ se puede calcular Q_3 y con v_4=(1,v43) se puede calcular Q_4.
 
 
 
-
-****i****matriz_R
-
-Descripción:
-        Función que devuelve la matriz R de la factorización QR de una matriz A,
-        apartir de la matriz Arv
-
-Parametros:
-        Arv   np.ndarray que representa matriz (mxn) que incluye elementos de 
-              la matriz R y Q, de la factorización QR
-
-Resultado:
-        R     np.ndarray que representa matriz (mxn) R de la factorización A=QR
-
-Visualmente la sustracción de los elementos de R se ve así:
-     [ r11  r12  r13  r14 ]            [ r11  r12  r13  r14 ]
-     [ v21  r22  r23  r24 ]            [  0   r22  r23  r24 ]
-Arv= [ v31  v32  r33  r34 ]   -->   R= [  0    0   r33  r34 ]
-     [ v41  v42  v43  r44 ]            [  0    0    0   r44 ]
-     [ v51  v52  v53  v54 ]            [  0    0    0    0  ]
-
-****f****matriz_R
-
-
-
-
-
-
-****i****matriz_Q
+****i****matriz_Q_R
 
 Descripción:
-        Función que devuelve la matriz R de la factorización QR de una matriz A,
-        apartir de la matriz Arv
+        Función que devuelve la matriz Q y R de la factorización QR de una matriz A
 
 Parametros:
-        Arv   np.ndarray que representa la matriz auxiliar (mxn) que incluye 
-              elementos de la matriz R y Q, de la factorización QR
+        A     np.ndarray que representa una matriz (mxn)
 
 Resultado:
-        R     np.ndarray que representa matriz Q (mxm) de la factorización A=QR
+        R     np.ndarray que representa matriz R (mxm) de la factorización A=QR
+        Q     np.ndarray que representa matriz Q (mxm) de la factorización A=QR
 
-La matriz Q (matriz ortogonal tal que Q_transpuesta*Q es igual a la identidad (mxm)
+
+Para obtener la factorización primero se calcula la matriz auxiliar Arv. La matriz Q 
+(matriz ortogonal tal que Q_transpuesta*Q es igual a la identidad (mxm)
 se calcula como el producto de las matrices Q_j's, las cuales se obtienen a partir
 de las diferentes matrices de reflexión householder utilizadas para generar los ceros
 en las columnas de A para formar la matriz R
@@ -183,7 +156,16 @@ Nota: Cada matriz Q_j se calcula con el vector v_j, correspondiente al j-ésimo
 vector de householder como: Q_j = Identidad(mxm) - Beta*v_j*v_j_transpuesta
 Dichos vectores v están contenidos dentro de la matriz auxiliar Arv
 
-****f****matriz_Q
+La matriz R es calculada como Q@A. Recordemos que la matriz Arv tiene elementos
+de R como se puede ver a continuación:
+
+     [ r11  r12  r13  r14 ]            [ r11  r12  r13  r14 ]
+     [ v21  r22  r23  r24 ]            [  0   r22  r23  r24 ]
+Arv= [ v31  v32  r33  r34 ]   -->   R= [  0    0   r33  r34 ]
+     [ v41  v42  v43  r44 ]            [  0    0    0   r44 ]
+     [ v51  v52  v53  v54 ]            [  0    0    0    0  ]
+
+****f****matriz_Q_R
 
 
 
