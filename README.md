@@ -7,7 +7,7 @@
 
 ### General
 
-> Programar el método de eliminación por bloques que se encuentra en la sección **Métodos o algoritmos numéricos por bloques para SEL** en la nota [3.3.Solucion_de_SEL_y_FM](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb). Para resolver este método, el equipo también programará  [3.3.c.Factorizacion_QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb) para resolver los sistemas de ecuaciones que surjan en el método de eliminación por bloques.
+> Implementar el método de eliminación por bloques para resolver sistemas de ecuaciones lineales en lenguaje de programación de python, utilizando como apoyo el método matricial de factorización QR, para resolver los sistemas de ecuaciones que surjan en el método de eliminación por bloques.
 
 ### Específicos
 
