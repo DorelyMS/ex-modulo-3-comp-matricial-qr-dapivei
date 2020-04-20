@@ -114,7 +114,7 @@ house.__doc__ =busca_ayuda("house")
 
 
 
-def matriz_auxiliar_Arv(A):
+def matriz_auxiliar_Arv(A,ind_singular=False):
     """
     Función que genera una matriz que contiene los elementos r distintos de cero de la 
     matriz R y las entradas de los vectores householder v (excepto la primera), con los 
@@ -135,17 +135,32 @@ def matriz_auxiliar_Arv(A):
         sys.exit('EL numero de renglones de A debe ser mayor o igual al no. de columnas')
     
     #m contiene el numero de renglones y n el de columnas
-    m=A.shape[0]
-    n=A.shape[1]
+    m,n=A.shape
     #se crea una matriz con los valores de A
     Arv=copy.copy(A)
-    for j in range(n):
-        beta, v=house(Arv[j:m,j])
-        #Con esta multiplicación se van generando las componentes r de la matriz R
-        #Arv[j:m,j:n]=Arv[j:m,j:n]-beta*(np.outer(v,v)@Arv[j:m,j:n]) #OBSERVACIÓN: Checar cual es más eficiente (este o el renglón de abajo)
-        Arv[j:m,j:n]=Arv[j:m,j:n]-beta*np.outer(v,(np.transpose(v)@Arv[j:m,j:n]))
-        #se guarda en cada columnas los valores de v d, excepto la primer componente (que vale 1)
-        Arv[(j+1):m,j]=v[1:(m-j)]
+    
+    #si no se pide que se cheque que la matriz es singular, se obtendrá la matriz R
+    #aún si esta es singula (que exista algún elemento de la diagonal que sea 0
+    if ind_singular==False:
+        for j in range(n):
+            beta, v=house(Arv[j:m,j])
+            #Con esta multiplicación se van generando las componentes r de la matriz R
+            Arv[j:m,j:n]=Arv[j:m,j:n]-beta*np.outer(v,(np.transpose(v)@Arv[j:m,j:n]))
+            #se guarda en cada columnas los valores de v d, excepto la primer componente (que vale 1)
+            Arv[(j+1):m,j]=v[1:(m-j)]
+    else:
+        for j in range(n):
+            beta, v=house(Arv[j:m,j])
+            Arv[j:m,j:n]=Arv[j:m,j:n]-beta*np.outer(v,(np.transpose(v)@Arv[j:m,j:n]))
+            #Si se detecta que alguna entrada de la diagonal (elemento de la maatriz R)
+            #es cero, se devuelve un valor nulo (None), y para el cálculo de Arv
+            #No se condiciona sobre si alcanza el valor de cero, sino más bien
+            #si está lo suficientemente cercano, pues dados los errores por redondeo
+            #no siempre se alcanza el cero aunque teóricamente sí lo sea, pero el
+            #algoritmos arroja un valor cercano a cero
+            if Arv[j,j]<10**(-14) or Arv[j,j]>-10**(-14):
+                return None
+            Arv[(j+1):m,j]=v[1:(m-j)]
     return Arv
 
 matriz_auxiliar_Arv.__doc__ =busca_ayuda("matriz_auxiliar_Arv")
@@ -155,7 +170,7 @@ matriz_auxiliar_Arv.__doc__ =busca_ayuda("matriz_auxiliar_Arv")
 
 
 
-def matriz_Q_R(A):
+def matriz_Q_R(A,ind_singular=False):
     """
     Función que devuelve la matriz R y Q de la factorización QR de una matriz A
     
@@ -171,15 +186,23 @@ def matriz_Q_R(A):
     elif A.shape[0]<A.shape[1]:
         sys.exit('El numero de renglones de A tiene que ser igual o mayor al no. de columnas')
     
-    Arv=matriz_auxiliar_Arv(A)
-    m,n=A.shape
-    Q=np.eye(m)
-    R=copy.copy(A)
-    for j in range(n):
-        Qj=Q_j(Arv,j+1)
-        Q=Q@Qj
-        R=Q_j(Arv,j+1)@R
-    return Q,R
+    #si ind_singular es True, entonces no se devuelve la matriz R ni Q
+    #esto se plantea así como un sistema de contról, para evitar comprobar que las matrices
+    #sean singulares (y no tengan una única solución) mediante el determinante, que
+    #involucra un alto costo computacional para matrices de tamaño representativo
+    Arv=matriz_auxiliar_Arv(A,ind_singular)
+
+    if Arv is None:
+        return None, None
+    else:
+        m,n=A.shape
+        Q=np.eye(m)
+        R=copy.copy(A)
+        for j in range(n):
+            Qj=Q_j(Arv,j+1)
+            Q=Q@Qj
+            R=Q_j(Arv,j+1)@R
+        return Q,R
 
 matriz_Q_R.__doc__ =busca_ayuda("matriz_Q_R")
 
@@ -198,7 +221,7 @@ def Q_j(Arv,j):
 
     return: Qj    Matriz Q de la j-esima iteración del proceso iterativo de factorización QR
     """
-
+    
     #Se checa que los parámetros sean congruentes con la funcionalidad
     if type(Arv) is not np.ndarray:
         sys.exit('Arv debe ser de tipo numpy.ndarray')
@@ -251,10 +274,10 @@ def Solucion_SEL_QR_nxn(A,b):
         if flag!=1:
             sys.exit("b debe representar un vector de m renglones y 1 columna")
 
-    if np.linalg.det(A)==0:
-        sys.exit('A debe ser no singular')
-
-    Q,R=matriz_Q_R(A)
+    #Si la matriz A es singular, Q y R serán igual a None
+    Q,R=matriz_Q_R(A,1)
+    if Q is None:
+        sys.exit('La matriz A asociada al sistema de ecuaciones es singular')
     b_prima=np.transpose(Q)@b
     x=solve_triangular(R, b_prima,lower=False)
     return x
@@ -361,26 +384,23 @@ def eliminacion_bloques(A,b, m1=False, n1=False):
     A11,A21,A12,A22,b1,b2=crear_bloques(A,b,m1,n1)
 
     # 1. Calcular Y=A11^{-1}A12 y y=A11^{-1}b1 teniendo cuidado en no calcular la inversa sino un sistema de ecuaciones lineales
-    if np.linalg.det(A11)==0:
-        sys.exit('A11 debe ser no singular')
-    y=Solucion_SEL_QR_nxn(A11,b1)
-    #y=np.linalg.solve(A11,b1)
+    #if np.linalg.det(A11)==0:
+    #    sys.exit('A11 debe ser no singular')
+    y=Solucion_SEL_QR_nxn(A11,b1,1)
     
     Y=np.zeros((n1,n-n1))
     for j in range(n-n1):
-        Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j])
+        Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j],1)
     
     # 2. Calcular el complemento de Schur del bloque A11 en A. Calcular b_hat
     S=A22-A21@Y
     b_h=b2-A21@y
 
     # 3. Resolver Sx2 = b_hat
-    x2=Solucion_SEL_QR_nxn(S,b_h)
-    #x2=np.linalg.solve(S,b_h)
+    x2=Solucion_SEL_QR_nxn(S,b_h,1)
 
     # 4. Resolver A11x1 = b1-A12x2
-    x1=Solucion_SEL_QR_nxn(A11,b1-A12@x2)
-    #x1=np.linalg.solve(A11,b1-A12@x2)
+    x1=Solucion_SEL_QR_nxn(A11,b1-A12@x2,1)
 
     return np.concatenate((x1,x2), axis=0)
 
