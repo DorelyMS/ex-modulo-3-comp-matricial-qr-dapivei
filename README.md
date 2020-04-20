@@ -134,16 +134,11 @@ Al momento de revisión del presente trabajo, la totalidad de issues levantados 
 ## Conclusiones
 
 
-#### En términos del empleo de las herramientas de Github y del *framework scrum*
 
 Para el desarrolo del presente trabajo, el empleo de herramientas disponibles en internet como ser Github (para el resguardo de la información que fuimos generando a lo largo del proyecto) y de Git, en específico, para el  Git el control de las distintas versiones de los documentos que fuimos desarrollando fue fundamental. El uso de estas herramientas nos permitió contar con una *bitácora* de los cambios que fuimos realizando durante la elaboración de los distintos productos del proyecto.
 
 Además, gracias al presente proyecto, descubrimos otra faceta de Github: la posibilidad de organización de proyectos por este medio, através del levantamiento de *issues*, creación de *milestones* y *project boards*. Todas estas herramientas, incluidas dentro de Github, nos ayudaron en distintos aspectos: delegación de tareas, seguimiento a las tareas, visualización y calendarización de los temas pendientes y orientación constante hacia nuestro objetivo final: cumplimiento de los objetivos del proyecto. Estas herramientas, junto con el empleo del *framework* scrum, facilito nuestro trabajo final.
 
-#### En términos de la implementación del algoritmo *eliminación por bloques*, utilizando como apoyo el método matricial de factorización QR
-
-
-#### Retos
 
 
 
