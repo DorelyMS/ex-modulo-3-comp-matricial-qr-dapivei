@@ -1,5 +1,7 @@
 # Contenido del sitio
 
+<div align="justify">
+
 Este apartado contiene dos carpetas: [Revision1](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas) y [Revision2](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas/Revision2).
 
 El folder **Revision1** contiene a su vez los siguientes documentos:
@@ -25,4 +27,5 @@ El folder **Revision2** contiene a su vez los siguientes documentos:
 
 + [pu2_epbQR_sistema_soluciones_infinitas.ipynb](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Pruebas/Revision2/pu2_epbQR_sistema_soluciones_infinitas.ipynb): Validación de de las funciones implementadas por los programadores para resolver sistemas de ecuaciones lineales por bloques, en el módulo `funciones_factorizacion-QR`. Particularmente, busca identificar los mensajes de error emitidos por el algoritmo, cuando se enfrenta a sistemas de ecuaciones con soluciones infinitas. Hallazgos: los ejemplos muestran evidencia de que la función `eliminacion_bloques` está preparada para recibir un sistema de ecuaciones con soluciones infinitas y desplegar un mensaje de error.
 
+</div>
 
