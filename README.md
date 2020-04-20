@@ -49,13 +49,14 @@
 
 - [X] [Pruebas](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas): Contiene las diferentes pruebas que se realizaron a las funciones propuestas para verificar que los algoritmos sean precisos y arrojen mensajes de error cuando los datos de entrada no cumplan los requisitos determinados por el algoritmo que se está implementando.
 
+- [X] [Insumos](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Contiene los insumos principales para la elaboración del reporte final.
 
 - [X] [Images](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Imágenes que se fueron insertando en este documento o en el [reporteFinal.iypnb](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb).
 
 
 - [X] [Referencias](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Referencias): Bibliografía o páginas consultadas para la elaboración de este proyecto.
 
-- [X] [Reporte final](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb): Documento dónde se presentan los resultados finales del proyecto. Incluye: Descripción teórica básica de los métodos implementados, explicación breve del algoritmo propuesto, especificación de funciones principales y funciones auxilarias, ejecución de varios ejemplos que se corrieron, tablas y gráficas que muestren el párametro de bloque (subdivisión de la matriz del sistema), tiempos de ejecución para todo el programa o subdividido por secciones, reporte de errores relativos y condición de matrices de los sistemas resueltos y los resultados de sus pruebas. 
+- [X] [Reporte final](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb): Documento dónde se presentan los resultados finales del proyecto. Incluye: Descripción teórica básica de los métodos implementados, explicación breve del algoritmo propuesto, especificación de funciones principales y funciones auxilarias, ejecución de varios ejemplos que se corrieron, tablas y gráficas que muestren el párametro de bloque (subdivisión de la matriz del sistema), tiempos de ejecución para todo el programa o subdividido por secciones, reporte de errores relativos y condición de matrices de los sistemas resueltos y los resultados de sus pruebas.
 
 
 ## Sobre el Desarrollo del Proyecto
@@ -68,7 +69,7 @@ El equipo que elaboró el presente proyecto se estructuró conforme con el *fram
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Images/scrumprocess.png">
- 
+
  **Fuente**: [What is scrum? An overview of the Agile Framework](https://www.youtube.com/watch?v=Ifc2Z4nXMvE)
 
 </p>
@@ -90,7 +91,7 @@ Para dar orden durante el levantamiento de los *issues*, se definió que la proj
 
 ##### Sobre los Issues
 
-En total se levantaron `25` issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
+En total se levantaron `26` issues, de los cuáles la mayoría de los issues fueron acordados durante las diferentes reuniones que se sostuvieron con el equipo. Los issues fueron del siguiente tipo:
 
 
 > Instrucciones relativas a la programación del método que se nos fue asignado: eliminación por bloques con el apoyo del método matricial de factorización QR. Para ellos, tpdos los issues se englobaron dentro de los tres milestones que previamente habíamos definido.
@@ -130,6 +131,13 @@ Para consultar los issues que se fueron creando a lo largo del proyecto, además
 
 Al momento de revisión del presente trabajo, la totalidad de issues levantados se encuentran cerrados, todos los milestones fueron cumplidos y los objetivos alcanzados satisfactoriamente.
 
+
+<p align="center">
+
+  <img width="460" height="300" src="https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Images/projectboard.png">
+
+
+</p>
 
 ## Conclusiones
 
