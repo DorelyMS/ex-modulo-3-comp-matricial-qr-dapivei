@@ -158,7 +158,7 @@ def matriz_auxiliar_Arv(A,ind_singular=False):
             #si está lo suficientemente cercano, pues dados los errores por redondeo
             #no siempre se alcanza el cero aunque teóricamente sí lo sea, pero el
             #algoritmos arroja un valor cercano a cero
-            if Arv[j,j]<10**(-14) or Arv[j,j]>-10**(-14):
+            if Arv[j,j]<10**(-14) and Arv[j,j]>-10**(-14):
                 return None
             Arv[(j+1):m,j]=v[1:(m-j)]
     return Arv
@@ -378,29 +378,29 @@ def eliminacion_bloques(A,b, m1=False, n1=False):
     if m != n:
         sys.exit('A debe ser cuadrada')
 
-    if np.linalg.det(A)==0:
-        sys.exit('A debe ser no singular')
+#     if np.linalg.det(A)==0:
+#         sys.exit('A debe ser no singular')
 
     A11,A21,A12,A22,b1,b2=crear_bloques(A,b,m1,n1)
 
     # 1. Calcular Y=A11^{-1}A12 y y=A11^{-1}b1 teniendo cuidado en no calcular la inversa sino un sistema de ecuaciones lineales
     #if np.linalg.det(A11)==0:
     #    sys.exit('A11 debe ser no singular')
-    y=Solucion_SEL_QR_nxn(A11,b1,1)
+    y=Solucion_SEL_QR_nxn(A11,b1)
     
     Y=np.zeros((n1,n-n1))
     for j in range(n-n1):
-        Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j],1)
+        Y[:,j]=Solucion_SEL_QR_nxn(A11,A12[:,j])
     
     # 2. Calcular el complemento de Schur del bloque A11 en A. Calcular b_hat
     S=A22-A21@Y
     b_h=b2-A21@y
 
     # 3. Resolver Sx2 = b_hat
-    x2=Solucion_SEL_QR_nxn(S,b_h,1)
+    x2=Solucion_SEL_QR_nxn(S,b_h)
 
     # 4. Resolver A11x1 = b1-A12x2
-    x1=Solucion_SEL_QR_nxn(A11,b1-A12@x2,1)
+    x1=Solucion_SEL_QR_nxn(A11,b1-A12@x2)
 
     return np.concatenate((x1,x2), axis=0)
 
