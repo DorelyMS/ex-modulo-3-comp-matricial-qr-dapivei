@@ -49,7 +49,7 @@
 
 - [X] [Pruebas](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Pruebas): Contiene las diferentes pruebas que se realizaron a las funciones propuestas para verificar que los algoritmos sean precisos y arrojen mensajes de error cuando los datos de entrada no cumplan los requisitos determinados por el algoritmo que se está implementando.
 
-- [X] [Insumos](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Contiene los insumos principales para la elaboración del reporte final.
+- [X] [Insumos](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Insumos): Contiene los insumos principales para la elaboración del reporte final.
 
 - [X] [Images](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/tree/master/Images): Imágenes que se fueron insertando en este documento o en el [reporteFinal.iypnb](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/reporteFinal.ipynb).
 
@@ -134,7 +134,7 @@ Al momento de revisión del presente trabajo, la totalidad de issues levantados 
 
 <p align="center">
 
-  <img width="460" height="300" src="https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Images/projectboard.png">
+  <img width="700" height="500" src="https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-qr-dapivei/blob/master/Images/projectboard.png">
 
 
 </p>
